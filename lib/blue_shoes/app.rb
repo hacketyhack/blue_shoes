@@ -4,6 +4,9 @@ module Shoes
     def initialize opts = {}, blk #:nodoc:
       super ARGV
 
+      
+      set_window_icon(Qt::Icon.new "#{File.expand_path(File.dirname(__FILE__))}/../../static/blue_shoes.jpg")
+
       height = opts[:height] || 200
       width = opts[:width] || 400
       resizeable = opts[:resizable].nil? ? true : false
