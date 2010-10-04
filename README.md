@@ -1,14 +1,32 @@
-# Blue Shoes
+    ((( |||_| ///\ [[[_ (((
+     ))) || |  \\/  [[_  )))
+    an artsy any-platform app kit <http://github.com/shoes/shoes>
 
-This is a fork of [Shoes](http://shoes.heroku.com/), written using QT.
+# About Shoes
 
-# Installing
+Shoes is the best little DSL for cross-platform GUI programming there is. It feels like real Ruby, rather than just another C++ library wrapper. If Gtk or wxWidgets is Rails, Shoes is Sinatra.
 
-I'm using Ruby 1.9.2 with qtbindings.
+# Let me tell you a story about Shoes
 
-I'm using rvm, so to get 1.9.2, just `rvm install 1.9.2`, and wait!
+  Way way back in the day, there was a guy named \_why. He created a project known as [Hackety Hack](http://hackety-hack.com) to teach programming to everyone. In order to reach all corners of the earth, \_why decided to make Hackety Hack work on Windows, Mac OS X, and Linux. This was a lot of work, and so \_why decided to share his toolkit with the world. Thus, Shoes was born.
 
-## dependancies 
+Everybody loved Shoes. Many apps were made, and put into [The Shoebox](http://the-shoebox.org/). But, one day, \_why left. In his memory, Team Shoes assembled, and carried on making Shoes. They released Shoes version 3 in the late summer of 2010, but all was not good in Shoe-ville. You see, Shoes was barely held together by little bits of string. Three different platforms was a lot of work! And since \_why wasn't around to help, the code was confusing in places, and there were lots of little problems. Also, new versions of Windows and OSX came out after \_why's mysterious disappearance, and it was hard to test them all.
+
+Therefore, Team Shoes decided upon a grand experiment. Shoes would become many different colored Shoes. And thus, Blue Shoes was born. Alongside it, there are also Green Shoes, built with GTK, and Brown Shoes, on JRuby. The original Shoes became Red Shoes.
+
+But we're not here to talk about all those other Shoes... you care about Blue Shoes! It was started by the new champion of Hackety Hack, Steve Klabnik. Blue Shoes signifies the return of the union from which Shoes was originally born, and is made with Hackety Hack in mind. It's built on top of the QT library, which runs natively on all three platforms.
+
+# Helping out with Blue Shoes
+
+So you're intrigued, eh? Great! Blue Shoes is currently in the very nanescent stages of development, so there's lots of stuff to help with! The first thing you'll need to do is set up an environment.
+
+## Setting up an environment
+
+Blue Shoes works with Ruby 1.9.2. I'm using rvm, so to get 1.9.2, just `rvm install 1.9.2`, and wait!
+
+If you don't have rvm, you can get it [here](http://rvm.beginrescueend.com/). If you don't want to use rvm... you should.
+
+## Dependencies 
 
 To get qtbindings, first you need qt4 for your platform. Instructions shamelessly stolen from [here](http://github.com/ryanmelt/qtbindings):
 
@@ -39,147 +57,17 @@ Then you just `gem install qtbindings`, and off you go!
 
 ## Use Bundler
 
-Bundler is gaining a lot of steam as a dependancy management tool. So we're using it. To build your bundle, just type
+Bundler is gaining a lot of steam as a dependency management tool. So we're using it. To build your bundle, just type
 
-    $ bunlde install
+    $ bundle install
 
 and everything should get built.
 
 # What works
 
-Right now, this simple app works:
-
-    Shoes.app do
-      button "Push Me!" do
-        name = ask("What is your name?")
-        alert("Hello, #{name}")
-      end
-    end
-
-I'm currently working on getting the calculator example up and running.
+Right now, very simple apps work. Check out the 'samples' directory for some examples.
 
 # Stubs
 
 All methods and classes should be stubbed out. I went through the manual, and I think I got everything. Some classes have nothing in them, though, so I'm sure I'm missing some things! This was done in like 10 hours, with 6 of them being sleep...
-
-More to come soon!
-
-# Original README
-                      
-    ((( |||_| ///\ [[[_ (((
-     ))) || |  \\/  [[_  )))
-    an artsy any-platform app kit <http://github.com/shoes/shoes>
-
-//////////////////////////////////////////////////////////////////////////
-
-    Hi, guys, thankyou for taking Shoes.
-
-    Shoes is for writing plain old windowing software.  But it borrows a
-    few things I like from the web:
-
-    * Hyperlinks and URLs within Shoes and to the web.
-    * Simple text layout -- though Shoes eschews floats.
-    * Images and colors in the layout and in the background.
-    * Margin and padding.
-    * Resizable layouts.
-
-    However, layouts can be tough on the web.  Like a two-column layout.
-    So rather than using floating divs, Shoes uses two layout types:
-    stacks and flows.  More on that later.
-
-    Shoes does keep a few things from traditional windowing toolkits:
-
-    * Buttons.
-    * Text edit (single-line and multi-line).
-    * Progress bars.
-    * Scroll bars.
-    * Dialogs.
-
-    And, last of all, Shoes gets some inspiration from NodeBox and
-    Processing:
-
-    * The whole window is a canvas.
-    * Shapes, paths, curves and transformations.
-    * Animation.
-    * Easy event-handling for mouse and keyboard.
-
-    Lastly, Shoes uses Ruby as its interface language.
-
-    That's really about all that's in Shoes.  It's supposed to be light.
-    Not much code and not too much ambition.
-
-//////////////////////////////////////////////////////////////////////////
-
-    WHY NOT WXWINDOWS?  WHY NOT THE FOX TOOLKIT?  OR QT??
-
-    Shoes is strictly inspired by stuff like REBOL/View, HyperCard,
-    the web itself and, of course, Processing and NodeBox.
-
-    I don't like the bulkiness and the layers and layers of wxWindows,
-    FOX, QT, GNOME.  They are big, big libraries and all the apps look
-    identical, devoid of spirit.
-
-    The unique thing about the web is that it gives you very few
-    controls, but people are able to build wildly different pages
-    with it that are still immediately accessible to people.
-
-//////////////////////////////////////////////////////////////////////////
-
-    THE INSIDE OF SHOES
-
-    So, to save a bit of work, Shoes relies on a few libraries:
- 
-    * Cairo, for drawing. (http://cairographics.org)
-    * Pango, for text.
-    * Ruby, for programming.
-
-    All native widgets use the OS APIs directly.  Half of Shoes is platform
-    specific code.  The targets are: OSX, Windows and GTK.
-
-//////////////////////////////////////////////////////////////////////////
-
-    STAYING CURRENT WITH SHOES
-
-    Shoes development happens at Github.  You can download a current
-    tarball of the very latest Shoes from here:
-
-      http://github.com/shoes/shoes
-
-    Or, if you have git installed, you can clone the repo like so:
-
-      git clone git://github.com/shoes/shoes.git
-
-    Once you have your compiler and dependencies set up, building Shoes
-    is as simple as:
-
-      rake
-
-    Your Shoes build will then appear in the `dist` directory.
-
-    For instructions on how to set up your compiler and acquire deps for
-    Windows, OS X, and Linux, see the Shoes wiki:
-    <http://wiki.github.com/shoes/shoes/BuildingShoes>
-
-//////////////////////////////////////////////////////////////////////////
-
-    LICENSE
-
-    Copyright (c) 2008 why the lucky stiff
-    
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to
-    deal in the Software without restriction, including without limitation the
-    rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-    sell copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-      
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-       
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER 
-    IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
