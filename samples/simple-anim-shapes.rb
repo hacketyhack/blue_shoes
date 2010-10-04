@@ -11,7 +11,7 @@ Shoes.app do
     rect(0, 0, 50, 50),
     rect(0, 0, 100, 100),
     rect(0, 0, 75, 75)
-  ] 
+  ]
   animate(24) do |i|
     rects.each do |r|
       r.move((0..400).rand, (0..400).rand)
