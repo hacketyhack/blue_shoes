@@ -2,6 +2,9 @@
      ))) || |  \\/  [[_  )))
     an artsy any-platform app kit <http://github.com/shoes/shoes>
 
+![blue_shoes.jpg](http://github.com/hacketyhack/blue_shoes/raw/master/static/blue_shoes.jpg)
+
+
 # About Shoes
 
 Shoes is the best little DSL for cross-platform GUI programming there is. It feels like real Ruby, rather than just another C++ library wrapper. If Gtk or wxWidgets is Rails, Shoes is Sinatra.
