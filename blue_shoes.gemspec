@@ -5,8 +5,7 @@ require "blue_shoes/version"
 Gem::Specification.new do |s|
   s.name        = "blue_shoes"
   s.version     = BlueShoes::VERSION
-  s.platform    = Gem::Platform::CURRENT
-  s.authors     = "Team Shoes"
+  s.authors     = ["Team Shoes", "Steve Klabnik"]
   s.email       = "shoes@librelist.com"
   s.homepage    = "http://github.com/hacketyhack/blue_shoes"
   s.summary     = %q{A simple GUI toolkit.}
