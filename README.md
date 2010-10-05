@@ -25,9 +25,25 @@ So you're intrigued, eh? Great! Blue Shoes is currently in the very nanescent st
 
 ## Setting up an environment
 
+First of all, you're going to need git. You can get it [here](http://git-scm.com/).
+
 Blue Shoes works with Ruby 1.9.2. I'm using rvm, so to get 1.9.2, just `rvm install 1.9.2`, and wait!
 
 If you don't have rvm, you can get it [here](http://rvm.beginrescueend.com/). If you don't want to use rvm... you should.
+
+## Grab the source, luke
+
+First, make a fork here on GitHub! Just click the fork button.
+
+Next, clone your version:
+
+    $ git clone git@github.com:$YOUR_GITHUB_NAME/blue_shoes.git
+
+This'll make a `blue_shoes` directory, with all the code inside.
+
+Then, grab git-flow: http://github.com/nvie/gitflow
+
+`cd` into the `blue_shoes` directory, and type: '`git flow init`'. Give the default for all of the answers, except for when it asks you about `devel`. Use `development` instead.
 
 ## Dependencies 
 
