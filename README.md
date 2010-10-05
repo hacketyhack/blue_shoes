@@ -36,11 +36,9 @@ To get qtbindings, first you need qt4 for your platform. Instructions shamelessl
 Debian Linux
 ------------
 1. The following should get you the packages you need:
-sudo aptitude install build-essential bison openssl 
-  libreadline-dev curl git-core zlib1g zlib1g-dev libssl-dev vim
-  libsqlite3-0 libsqlite3-dev sqlite3
-  libxml2-dev git-core subversion autoconf xorg-dev libgl1-mesa-dev
-  libglu1-mesa-dev
+
+    sudo apt-get install build-essential bison autoconf g++ zlib1g-dev libreadline-dev libsqlite3-dev libxslt-dev libxml2-dev libssl-dev libsqlite3-dev curl git-core subversion xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+
 
 Mac OSX Snow Leopard
 -----------------------
