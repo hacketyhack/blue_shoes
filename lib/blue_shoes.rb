@@ -2,9 +2,36 @@
 require 'Qt4'
 
 #we want to require everything in the blue_shoes directory.
-Dir.glob("#{File.expand_path(File.dirname(__FILE__))}/blue_shoes/*.rb").each do |f|
-  require_relative f
+%W[
+app
+canvas
+color
+dialog
+download
+effect
+exception
+flow
+image
+link_url
+mask
+mouse
+native
+pattern
+search
+shape
+stack
+text
+text_block
+timer_base
+version
+video
+widget
+window
+].each do |f|
+  require_relative "blue_shoes/#{f}"
 end
+
+
 
 module Shoes
 
