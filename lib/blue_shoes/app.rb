@@ -1,62 +1,90 @@
 module Shoes
+  #this class represents a whole Shoes App.
   class App < Qt::Application #:nodoc: all
 
     def initialize opts = {}, blk #:nodoc:
+
       super ARGV
 
-      
+      #set the application icon to the shoes logo
       set_window_icon(Qt::Icon.new "#{File.expand_path(File.dirname(__FILE__))}/../../static/blue_shoes.jpg")
 
+      #set up some options with defaults
       height = opts[:height] || 200
       width = opts[:width] || 400
       resizeable = opts[:resizable].nil? ? true : false
 
       @_main_window = Qt::Widget.new do
+
         self.layout = Shoes::Stack.new
         resize height, width
+
+        #this is the list of subwidgets we've got
         @widgets = []
+
+        #we can make the window unresizable by adding a minimum and maximum
+        #size
         unless resizeable
           setMaximumSize(height,width)
           setMinimumSize(height,width)
         end
 
 
-        def self.paintEvent event
+        # in QT, each widget has a paint_event that gets called whenever
+        # it needs to be repainted. 
+        def self.paint_event event
+          #we create a painter...
           painter = Qt::Painter.new self
+          #then call it over every widget in our list
           @widgets.each{|w| w.draw painter }
+          #and then end painting
           painter.end
         end
 
+        #a nice convenience function to add our widgets to the array
         def add_widget widget
           @widgets << widget
         end
 
       end
 
-      
+      #we want to have a current widget, which starts off as the main window
       @_current_widget = @_main_window
 
+      #we evaluate the block we were passed. This is pretty much the heart of
+      #Shoes.
       instance_eval &blk
 
+      #then we show our window
       @_main_window.show
+      #and call QT's exec to kick things off!
       exec
       exit
     end
 
+    #Create a new button.
     def button txt, style={}, &blk
+
+      #create the button, don't forget to hook up that signal!
       b = Qt::PushButton.new txt do
-        #connect(SIGNAL :clicked) &blk if blk # TODO: not working ?????
         connect(SIGNAL :clicked) { blk.call } if blk
       end
+
+      #add it to our widget list
       add_widget b
+
+      #and we want to return it.
+      b
     end
 
+    #a convenience function for adding a widget to the current widget
     def add_widget widget
       @_current_widget.layout.add_widget widget, 0
     end
 
     #these classes should probably be moved to Shoes::Dialog
 
+    #create an alert
     class Alert < Qt::Dialog
       def initialize(message, parent = nil)
         super(parent)
@@ -413,7 +441,7 @@ module Shoes
     # A flow is an invisible box (or "slot") in which you place Shoes elements. Both flows and stacks are explained in great detail on the main Slots page.
     def flow(style, &blk)
       flow = Shoes::Flow.new(style)
-      @_main_window.add_widget flow
+      add_widget flow
       instance_eval &blk
       flow
     end
@@ -482,7 +510,7 @@ module Shoes
     # Creates a new stack. A stack is a type of slot. (See the main Slots page for a full explanation of both stacks and flows.)
     def stack(style, &blk)
       stack = Shoes::Stack.new
-      @_main_window.add_widget stack
+      add_widget stack
       instance_eval &blk
       stack
     end
