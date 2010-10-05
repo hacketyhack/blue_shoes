@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::CURRENT
   s.authors     = "Team Shoes"
   s.email       = "shoes@librelist.com"
-  s.homepage    = "http://github.com/steveklabnik/blue_shoes"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://github.com/hacketyhack/blue_shoes"
+  s.summary     = %q{A simple GUI toolkit.}
+  s.description = %q{Blue Shoes is a fork of Shoes, written with QT.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
