@@ -54,5 +54,9 @@ module Shoes
     Shoes::App.new opts, blk
   end
 
+  def app opts = {}, &blk
+    Shoes::App.new opts, blk
+  end
 end
+
 
