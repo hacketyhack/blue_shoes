@@ -32,7 +32,7 @@ module Shoes
 
         # in QT, each widget has a paint_event that gets called whenever
         # it needs to be repainted. 
-        def self.paint_event event
+        def self.paintEvent event
           #we create a painter...
           painter = Qt::Painter.new self
           #then call it over every widget in our list
@@ -193,9 +193,9 @@ module Shoes
 
     # Create a color from red, green and blue components. An alpha level (indicating transparency) can also be added, optionally.
     # This method may also be called as Shoes.rgb.
-    def rgb(red, green, blue, alpha)
+    def rgb(red, green, blue, alpha = 255)
       # returns Shoes::Color
-      throw NotImplementedError
+      Shoes::Color.new(red, green, blue, alpha)
     end
 
 
@@ -366,7 +366,7 @@ module Shoes
     
 
     # Draws a Background element with a specific color (or pattern.) Patterns can be colors, gradients or images. Colors and images will tile across the background. Gradients stretch to fill the background.
-    def background(pattern, style, &blk)
+    def background(pattern, style = {}, &blk)
       background = Shoes::Background.new(pattern, style)
       @_main_window.add_widget background
       background

@@ -1,5 +1,35 @@
 module Shoes
   class Color
+    attr_accessor :red, :green, :blue, :alpha
+    def initialize(red, green, blue, alpha)
+      self.red = red
+      self.green = green
+      self.blue = blue
+      self.alpha = alpha
+    end
+
+    def self.new_from_string(str, alpha = 255)
+      r, g, b = if str.length == 4
+        r = (str[1,1] * 2).to_i(16)
+        g = (str[2,1] * 2).to_i(16)
+        b = (str[3,1] * 2).to_i(16)
+        [r, g, b]
+      else
+        r = str[1,2].to_i(16)
+        g = str[3,2].to_i(16)
+        b = str[5,2].to_i(16)
+        [r, g, b]
+      end
+      self.new(r, g, b, alpha)
+    end
+
+    def to_s
+      "##{self.red.to_s(16)}#{self.green.to_s(16)}#{self.blue.to_s(16)}"
+    end
+
+    def qcolor
+      @qcolor ||= Qt::Color.new(self.red, self.green, self.blue, self.alpha)
+    end
   end
 
   # these colors cry out for some metaprogramming.

@@ -7,30 +7,15 @@ module Shoes
     attr_accessor :last
     attr_accessor :style
 
-    def initialize(pattern, style)
-      if pattern.first.length == 4
-        f = pattern.first
-        self.first = "#" + (f[1,1] * 2) + (f[2,1] * 2) + (f[3,1] * 2)
+    def initialize(pattern, style = {})
+      if pattern.is_a? Shoes::Color
+        self.first = pattern
+        self.last = pattern
       else
-        self.first = pattern.first
+        self.first = Shoes::Color.new_from_string(pattern.first)
+        self.last = Shoes::Color.new_from_string(pattern.last)
       end
-      if pattern.last.length == 4
-        l = pattern.last
-        self.last = "#" + (l[1,1] * 2) + (l[2,1] * 2) + (l[3,1] * 2)
-      else
-        self.last = pattern.last
-      end
-      self.style = style
-    end
-
-    def r color
-      color[1,2].to_i 16
-    end
-    def g color
-      color[3,2].to_i 16
-    end
-    def b color
-      color[5,2].to_i 16
+      self.style = Hash.new(0).merge(style)
     end
 
     #draws the background
@@ -39,8 +24,8 @@ module Shoes
       painter.setPen Qt::NoPen
       painter.setBrush Qt::HorPattern
       gradient = Qt::LinearGradient.new(0, 0, 0, 100)
-      bottom = Qt::Color.new(r(first),g(first),b(first))
-      top = Qt::Color.new(r(last),g(last),b(last))
+      bottom = first.qcolor
+      top = last.qcolor
       gradient.setColorAt(0.0, bottom)
       gradient.setColorAt(1.0, top)
       painter.setBrush(Qt::Brush.new(gradient))
