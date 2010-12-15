@@ -82,6 +82,10 @@ module Shoes
       @_current_widget.layout.add_widget widget, 0
     end
 
+    def add_style style
+      @_current_widget.layout.add_style style
+    end
+
     #these classes should probably be moved to Shoes::Dialog
 
     #create an alert
@@ -335,7 +339,9 @@ module Shoes
     # Set the active line color for this slot. The pattern may be a color, a gradient or an image, all of which are categorized as "patterns." The line color is then used to draw the borders of any subsequent shape.
     def stroke(pattern)
       # returns  pattern
-      throw NotImplementedError
+      stroke = Shoes::Stroke.new(pattern)
+      add_style stroke.to_style
+      stroke
     end
 
     # Sets the line size for all drawing within this slot. Whereas the stroke method alters the line color, the strokewidth method alters the line size in pixels. Calling strokewidth(4) will cause lines to be drawn 4 pixels wide.

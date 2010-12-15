@@ -1,12 +1,8 @@
 module Shoes
   class Pattern
-  end
-
-  class Background < Pattern
     attr_accessor :first
     attr_accessor :last
     attr_accessor :style
-
     def initialize(pattern, style = {})
       if pattern.is_a? Shoes::Color
         self.first = pattern
@@ -17,6 +13,18 @@ module Shoes
       end
       self.style = Hash.new(0).merge(style)
     end
+
+    def to_style
+      if self.first.to_s == self.last.to_s
+        self.first.to_s
+      else
+        "qlineargradient(x1: 0, y1:0, x2:0, y2:1, stop: 0 #{self.first.to_s}, stop: 1 #{self.last.to_s}"
+      end
+    end
+  end
+
+  class Background < Pattern
+
 
     #draws the background
     def draw painter
@@ -42,7 +50,11 @@ module Shoes
       # returns a Shoes::Pattern
       throw NotImplementedError
     end
-    
+
+    def to_style
+      "background-color: #{super}"
+    end
+
   end
 
   class Border < Pattern
@@ -52,6 +64,14 @@ module Shoes
       throw NotImplementedError
     end
     
+  end
+
+  class Stroke < Pattern
+    # Creates a basic pattern object that changes the stroke of the pen
+
+    def to_style
+      "color: #{super};"
+    end
   end
 
 end
