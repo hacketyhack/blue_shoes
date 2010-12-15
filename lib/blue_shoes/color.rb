@@ -23,8 +23,16 @@ module Shoes
       self.new(r, g, b, alpha)
     end
 
+    #define r, g, and b as helpers to get the 2 char string versions
+    {:r => :red, :g => :green, :b => :blue}.each do |str, int|
+      define_method(str) do
+        tmp = self.send(int).to_s(16)
+        tmp.size == 2 ? tmp : tmp * 2
+      end
+    end
+
     def to_s
-      "##{self.red.to_s(16)}#{self.green.to_s(16)}#{self.blue.to_s(16)}"
+      "##{self.r}#{self.g}#{self.b}"
     end
 
     def qcolor
