@@ -1,0 +1,8 @@
+gemset_name=blue_shoes
+
+rvm use ruby-1.9.2
+
+if [[ -z `rvm gemset list | grep $gemset_name` ]] ; then
+	rvm gemset create $gemset_name ;
+fi
+rvm gemset use $gemset_name
