@@ -1,20 +1,22 @@
+require_relative 'gui/qt'
+
 module Shoes
   #this class represents a whole Shoes App.
-  class App < Qt::Application #:nodoc: all
+  class App < Gui::Application #:nodoc: all
 
     def initialize opts = {}, blk #:nodoc:
 
       super ARGV
 
       #set the application icon to the shoes logo
-      set_window_icon(Qt::Icon.new "#{File.expand_path(File.dirname(__FILE__))}/../../static/blue_shoes.jpg")
+      set_window_icon(Gui::Icon.new "#{File.expand_path(File.dirname(__FILE__))}/../../static/blue_shoes.jpg")
 
       #set up some options with defaults
       height = opts[:height] || 200
       width = opts[:width] || 400
       resizeable = opts[:resizable].nil? ? true : false
 
-      @_main_window = Qt::Widget.new do
+      @_main_window = Gui::Widget.new do
 
         self.layout = Shoes::Stack.new
         resize height, width
@@ -34,7 +36,7 @@ module Shoes
         # it needs to be repainted. 
         def self.paintEvent event
           #we create a painter...
-          painter = Qt::Painter.new self
+          painter = Gui::Painter.new self
           #then call it over every widget in our list
           @widgets.each{|w| w.draw painter }
           #and then end painting
@@ -66,7 +68,7 @@ module Shoes
     def button txt, style={}, &blk
 
       #create the button, don't forget to hook up that signal!
-      b = Qt::PushButton.new txt do
+      b = Gui::PushButton.new txt do
         connect(SIGNAL :clicked) { blk.call } if blk
       end
 
@@ -89,10 +91,10 @@ module Shoes
     #these classes should probably be moved to Shoes::Dialog
 
     #create an alert
-    class Alert < Qt::Dialog
+    class Alert < Gui::Dialog
       def initialize(message, parent = nil)
         super(parent)
-        Qt::MessageBox::information(self,"Alert!" , message)
+        Gui::MessageBox::information(self,"Alert!" , message)
       end
     end
     
@@ -101,17 +103,17 @@ module Shoes
       Alert.new message
     end
 
-    class Ask < Qt::Dialog
+    class Ask < Gui::Dialog
       attr_accessor :text
 
       def initialize(message, parent = nil)
         super(parent)
-        ok = Qt::Boolean.new
-        self.text = Qt::InputDialog.getText(self,
+        ok = Gui::Boolean.new
+        self.text = Gui::InputDialog.getText(self,
                                         "I have a Question?",
                                         message,
-                                        Qt::LineEdit::Normal,
-                                        Qt::Dir::home().dirName(),
+                                        Gui::LineEdit::Normal,
+                                        Gui::Dir::home().dirName(),
                                         ok)
       end
     end

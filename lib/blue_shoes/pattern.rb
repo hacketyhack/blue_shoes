@@ -40,7 +40,7 @@ module Shoes
       top = last.qcolor
       gradient.setColorAt(0.0, bottom)
       gradient.setColorAt(1.0, top)
-      painter.setBrush(Qt::Brush.new(gradient))
+      painter.setBrush(Gui::Brush.new(gradient))
       window = painter.window
       window.setLeft(window.left + style[:margin])
       window.setTop(window.top + style[:margin])
