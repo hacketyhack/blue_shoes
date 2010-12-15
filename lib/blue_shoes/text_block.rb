@@ -14,12 +14,12 @@ module Shoes
       else
         text = Shoes::Text.new(text.to_s)
       end
-      self.label = Qt::Label.new
+      self.label = Gui::Label.new
       label.setText text.to_s
       if text.strong?
-        label.setFont(Qt::Font.new("Purisa", 12, Qt::Font::Bold));
+        label.setFont(Gui::Font.new("Purisa", 12, Gui::Font::Bold));
       else
-        label.setFont(Qt::Font.new("Purisa", 12));
+        label.setFont(Gui::Font.new("Purisa", 12));
       end
     end
 

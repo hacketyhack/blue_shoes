@@ -1,13 +1,18 @@
 PATH
   remote: .
   specs:
-    blue_shoes (0.0.1)
+    blue_shoes (0.0.2)
       qtbindings (~> 4.6.3.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
+    archive-tar-minitar (0.5.2)
+    autotest (4.4.1)
+    columnize (0.3.1)
     diff-lcs (1.1.2)
+    linecache19 (0.5.11)
+      ruby_core_source (>= 0.1.4)
     qtbindings (4.6.3.0)
     rspec (2.0.0.beta.22)
       rspec-core (= 2.0.0.beta.22)
@@ -19,11 +24,23 @@ GEM
     rspec-mocks (2.0.0.beta.22)
       rspec-core (= 2.0.0.beta.22)
       rspec-expectations (= 2.0.0.beta.22)
+    ruby-debug-base19 (0.11.24)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.4)
+      archive-tar-minitar (>= 0.5.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  autotest
   blue_shoes!
   qtbindings (~> 4.6.3.0)
   rspec (~> 2.0.0.beta.22)
+  ruby-debug19

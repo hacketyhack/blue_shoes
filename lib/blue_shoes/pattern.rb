@@ -35,15 +35,16 @@ module Shoes
 
     #draws the background
     def draw painter
-      painter.setRenderHint Qt::Painter::Antialiasing
-      painter.setPen Qt::NoPen
-      painter.setBrush Qt::HorPattern
-      gradient = Qt::LinearGradient.new(0, 0, 0, 100)
-      bottom = Qt::Color.new(r(first),g(first),b(first))
-      top = Qt::Color.new(r(last),g(last),b(last))
+      debugger
+      painter.setRenderHint Gui::Painter::Antialiasing
+      painter.setPen Gui::PenStyles::NoPen
+      painter.setBrush Gui::BrushStyles::HorPattern
+      gradient = Gui::LinearGradient.new(0, 0, 0, 100)
+      bottom = Gui::Color.new(r(first),g(first),b(first))
+      top = Gui::Color.new(r(last),g(last),b(last))
       gradient.setColorAt(0.0, bottom)
       gradient.setColorAt(1.0, top)
-      painter.setBrush(Qt::Brush.new(gradient))
+      painter.setBrush(Gui::Brush.new(gradient))
       window = painter.window
       window.setLeft(window.left + style[:margin])
       window.setTop(window.top + style[:margin])

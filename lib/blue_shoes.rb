@@ -1,5 +1,5 @@
-#yay qt4!
-require 'Qt4'
+
+$:.unshift 'lib/blue_shoes'
 
 #we want to require everything in the blue_shoes directory.
 %W[
@@ -31,7 +31,7 @@ window
   require_relative "blue_shoes/#{f}"
 end
 
-
+require_relative 'blue_shoes/gui/qt'
 
 module Shoes
 
@@ -54,5 +54,9 @@ module Shoes
     Shoes::App.new opts, blk
   end
 
+  def app opts = {}, &blk
+    Shoes::App.new opts, blk
+  end
 end
+
 
