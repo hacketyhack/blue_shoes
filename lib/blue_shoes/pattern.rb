@@ -4,13 +4,18 @@ module Shoes
     attr_accessor :last
     attr_accessor :style
     def initialize(pattern, style = {})
-      if pattern.is_a? Shoes::Color
-        self.first = pattern
-        self.last = pattern
-      else
+      pattern = [pattern] unless pattern.respond_to? :first
+      if pattern.first.is_a? String
         self.first = Shoes::Color.new_from_string(pattern.first)
-        self.last = Shoes::Color.new_from_string(pattern.last)
+      else
+        self.first = pattern.first
       end
+      if pattern.last.is_a? String
+        self.last = Shoes::Color.new_from_string(pattern.last)
+      else
+        self.last = pattern.last
+      end
+
       self.style = Hash.new(0).merge(style)
     end
 
@@ -18,13 +23,12 @@ module Shoes
       if self.first.to_s == self.last.to_s
         self.first.to_s
       else
-        "qlineargradient(x1: 0, y1:0, x2:0, y2:1, stop: 0 #{self.first.to_s}, stop: 1 #{self.last.to_s}"
+        "qlineargradient(x1: 0, y1:0, x2:0, y2:1, stop: 0 #{self.first.to_s}, stop: 1 #{self.last.to_s})"
       end
     end
   end
 
   class Background < Pattern
-
 
     #draws the background
     def draw painter
@@ -68,7 +72,6 @@ module Shoes
 
   class Stroke < Pattern
     # Creates a basic pattern object that changes the stroke of the pen
-
     def to_style
       "color: #{super};"
     end

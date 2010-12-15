@@ -180,7 +180,7 @@ module Shoes
     # Builds a linear gradient from two colors. For each color, you may pass in a Shoes::Color object or a string describing the color.
     def gradient(color1, color2)
       # returns Shoes::Pattern
-      throw NotImplementedError
+      Shoes::Pattern.new([color1, color2])
     end
 
     # Create a grayscale color from a level of darkness and, optionally, an alpha level.

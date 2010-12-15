@@ -10,6 +10,7 @@ module Shoes
     #instead of immediately delegating keep our own array as well, and add stylesheets
     def add_widget(widget, stretch)
       @widgets << widget
+      puts stylesheet.inspect
       widget.setStyleSheet(stylesheet)
       @layout.add_widget(widget, stretch)
     end
